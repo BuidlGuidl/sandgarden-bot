@@ -1,18 +1,20 @@
 import { readFile } from "node:fs/promises";
 import type { Tool } from "./types.js";
+import { safePath } from "./safe-path.js";
 
 export const readFileTool: Tool = {
   name: "read_file",
-  description: "Read the contents of a file at the given path.",
+  description:
+    "Read the contents of a file. Path is relative to project root; cannot escape it.",
   parameters: {
     type: "object",
     properties: {
-      path: { type: "string", description: "Absolute or relative file path" },
+      path: { type: "string", description: "File path relative to project root" },
     },
     required: ["path"],
   },
   async execute(params) {
-    const content = await readFile(params.path as string, "utf-8");
-    return content;
+    const resolved = safePath(params.path as string);
+    return await readFile(resolved, "utf-8");
   },
 };
