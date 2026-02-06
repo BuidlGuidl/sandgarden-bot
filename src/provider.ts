@@ -17,10 +17,12 @@ export function init(
 export async function chat(
   messages: MessageParam[],
   tools?: Anthropic.Messages.Tool[],
+  system?: string,
 ): Promise<Anthropic.Messages.Message> {
   return client.messages.create({
     model,
     max_tokens: maxTokens,
+    ...(system ? { system } : {}),
     messages,
     ...(tools?.length ? { tools } : {}),
   });

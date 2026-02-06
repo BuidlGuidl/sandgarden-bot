@@ -2,6 +2,7 @@ import type Anthropic from "@anthropic-ai/sdk";
 import type { MessageParam } from "@anthropic-ai/sdk/resources/messages.js";
 import { chat } from "../provider.js";
 import { getDefinitions, execute } from "../tools/registry.js";
+import { buildSystemPrompt, buildMessages } from "./context.js";
 
 const MAX_ITERATIONS = 20;
 
@@ -21,11 +22,12 @@ export async function runAgentLoop(
   userMessage: string,
 ): Promise<AgentResult> {
   const tools = getDefinitions();
-  const messages: MessageParam[] = [{ role: "user", content: userMessage }];
+  const system = buildSystemPrompt();
+  const messages: MessageParam[] = buildMessages([], userMessage);
   const usage = { input: 0, output: 0 };
 
   for (let i = 0; i < MAX_ITERATIONS; i++) {
-    const response = await chat(messages, tools);
+    const response = await chat(messages, tools, system);
     usage.input += response.usage.input_tokens;
     usage.output += response.usage.output_tokens;
 
