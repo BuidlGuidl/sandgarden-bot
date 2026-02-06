@@ -1,11 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { MessageParam } from "@anthropic-ai/sdk/resources/messages.js";
 
-export interface LLMResponse {
-  content: string;
-  usage?: { input: number; output: number };
-}
-
 let client: Anthropic;
 let model: string;
 let maxTokens: number;
@@ -19,21 +14,14 @@ export function init(
   maxTokens = opts.maxTokens;
 }
 
-export async function chat(messages: MessageParam[]): Promise<LLMResponse> {
-  const response = await client.messages.create({
+export async function chat(
+  messages: MessageParam[],
+  tools?: Anthropic.Messages.Tool[],
+): Promise<Anthropic.Messages.Message> {
+  return client.messages.create({
     model,
     max_tokens: maxTokens,
     messages,
+    ...(tools?.length ? { tools } : {}),
   });
-
-  const textBlock = response.content.find((b) => b.type === "text");
-  const content = textBlock ? textBlock.text : "";
-
-  return {
-    content,
-    usage: {
-      input: response.usage.input_tokens,
-      output: response.usage.output_tokens,
-    },
-  };
 }

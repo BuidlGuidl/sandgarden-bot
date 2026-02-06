@@ -1,8 +1,8 @@
-export interface BotConfig {
+export type BotConfig = {
   anthropicApiKey: string;
   model?: string;
   maxTokens?: number;
-}
+};
 
 const DEFAULTS = {
   model: "claude-sonnet-4-20250514",
