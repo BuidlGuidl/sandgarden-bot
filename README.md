@@ -42,6 +42,7 @@ Built-in tools:
 | `read_file`  | Read file contents                                                                   |
 | `write_file` | Write content to a file (creates dirs if needed)                                     |
 | `exec`       | Run a shell command (allowlisted: `ls`, `cat`, `grep`, `find`, `node`, `npm`, `git`) |
+| `memory`     | Read or save to long-term memory (persists across all sessions)                       |
 
 ### Adding a new tool
 
@@ -52,10 +53,18 @@ Built-in tools:
 
 Conversations are persisted as JSONL files in `.sandgarden-bot/sessions/`. Each message (user or assistant) is one JSON line. The agent loads the last 50 (MAX_HISTORY) messages as history for context continuity.
 
+Every message is also appended to a daily archive at `.sandgarden-bot/sessions/daily/YYYY-MM-DD.jsonl` — a chronological log across all sessions.
+
 Session IDs:
 
 - CLI: `cli:default`
 - Telegram: `telegram:<chat_id>` (automatic per user)
+
+## Memory
+
+Long-term memory lives in `.sandgarden-bot/memory/MEMORY.md`. The agent can read and save notes via the `memory` tool. Saved facts are injected into the system prompt on every request.
+
+The agent saves autonomously when it detects noteworthy facts or preferences (configurable via system prompt instructions). Users can also ask explicitly ("remember X").
 
 ## Telegram
 
@@ -96,3 +105,13 @@ The bot responds to private text messages from whitelisted chat IDs.
 3. Add that number to `allowedChatIds`
 
 </details>
+
+## Clearing data
+
+Wipe all bot state (sessions, memory, daily archives):
+
+```bash
+npm run clear
+```
+
+Prompts for confirmation before deleting `.sandgarden-bot/`.

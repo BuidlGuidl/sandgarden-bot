@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "telegram": "tsx src/telegram.ts"
+    "telegram": "tsx src/telegram.ts",
+    "clear": "tsx scripts/clear.ts"
   },
   "repository": {
     "type": "git",
