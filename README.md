@@ -51,14 +51,17 @@ Built-in tools:
 
 ## Sessions
 
-Conversations are persisted as JSONL files in `.sandgarden-bot/sessions/`. Each message (user or assistant) is one JSON line. The agent loads the last 50 (MAX_HISTORY) messages as history for context continuity.
+Each session gets its own folder under `.sandgarden-bot/sessions/<session_id>/`:
 
-Every message is also appended to a daily archive at `.sandgarden-bot/sessions/daily/YYYY-MM-DD.jsonl` — a chronological log across all sessions.
+- `current.jsonl` — active conversation (JSONL, one message per line)
+- `daily/YYYY-MM-DD.jsonl` — daily archive (append-only log)
+
+The agent loads the last 50 (MAX_HISTORY) messages from `current.jsonl` as history. `/new` in Telegram clears `current.jsonl` but preserves daily logs.
 
 Session IDs:
 
-- CLI: `cli:default`
-- Telegram: `telegram:<chat_id>` (automatic per user)
+- CLI: `cli_default`
+- Telegram: `telegram_<chat_id>` (automatic per user)
 
 ## Memory
 

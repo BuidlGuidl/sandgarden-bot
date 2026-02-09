@@ -3,7 +3,6 @@ import { join } from "path";
 import type { MessageParam } from "@anthropic-ai/sdk/resources/messages.js";
 
 const SESSIONS_DIR = join(process.cwd(), ".sandgarden-bot", "sessions");
-const DAILY_DIR = join(SESSIONS_DIR, "daily");
 
 type SessionEntry = {
   role: "user" | "assistant";
@@ -11,9 +10,16 @@ type SessionEntry = {
   timestamp: string;
 };
 
+function safeId(sessionId: string): string {
+  return sessionId.replace(/:/g, "_");
+}
+
+function sessionDir(sessionId: string): string {
+  return join(SESSIONS_DIR, safeId(sessionId));
+}
+
 function sessionPath(sessionId: string): string {
-  const safe = sessionId.replace(/:/g, "_");
-  return join(SESSIONS_DIR, `${safe}.jsonl`);
+  return join(sessionDir(sessionId), "current.jsonl");
 }
 
 export function load(sessionId: string): MessageParam[] {
@@ -32,14 +38,18 @@ export function load(sessionId: string): MessageParam[] {
   }, []);
 }
 
-function dailyPath(): string {
+function dailyPath(sessionId: string): string {
   const date = new Date().toISOString().slice(0, 10);
-  return join(DAILY_DIR, `${date}.jsonl`);
+  return join(sessionDir(sessionId), "daily", `${date}.jsonl`);
 }
 
 export function appendToSession(sessionId: string, messages: MessageParam[]): void {
-  if (!existsSync(SESSIONS_DIR)) mkdirSync(SESSIONS_DIR, { recursive: true });
-  if (!existsSync(DAILY_DIR)) mkdirSync(DAILY_DIR, { recursive: true });
+  const daily = dailyPath(sessionId);
+  const dir = sessionDir(sessionId);
+  const dailyDir = join(dir, "daily");
+
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  if (!existsSync(dailyDir)) mkdirSync(dailyDir, { recursive: true });
 
   const now = new Date().toISOString();
   const lines = messages.map((msg) => {
@@ -53,7 +63,7 @@ export function appendToSession(sessionId: string, messages: MessageParam[]): vo
 
   const data = lines.join("\n") + "\n";
   appendFileSync(sessionPath(sessionId), data);
-  appendFileSync(dailyPath(), data);
+  appendFileSync(daily, data);
 }
 
 export function clearSession(sessionId: string): boolean {
