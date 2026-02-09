@@ -3,7 +3,7 @@ import { loadConfig } from "./config.js";
 import { init } from "./provider.js";
 import { registerBuiltinTools } from "./tools/registry.js";
 import { runAgentLoop } from "./agent/loop.js";
-import { clearSession } from "./session/manager.js";
+import { clearSession } from "./agent/session.js";
 
 const TELEGRAM_MAX_LENGTH = 4096;
 

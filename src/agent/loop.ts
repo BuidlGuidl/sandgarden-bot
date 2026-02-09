@@ -3,7 +3,7 @@ import type { MessageParam } from "@anthropic-ai/sdk/resources/messages.js";
 import { chat } from "../provider.js";
 import { getDefinitions, execute } from "../tools/registry.js";
 import { buildSystemPrompt, buildMessages } from "./context.js";
-import { getHistory, appendToSession } from "../session/manager.js";
+import { getHistory, appendToSession } from "./session.js";
 
 const MAX_ITERATIONS = 20;
 const MAX_HISTORY = 50;
