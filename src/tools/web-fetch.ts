@@ -6,8 +6,7 @@ const MAX_CONTENT_LENGTH = 5000;
 const FETCH_TIMEOUT_MS = 10_000;
 const ALLOWED_PROTOCOLS = new Set(["http:", "https:"]);
 
-// Hostname-based SSRF check. Does not protect against DNS rebinding
-// (attacker domain resolving to private IP). Acceptable for a personal bot.
+// Hostname-based SSRF check
 const PRIVATE_PATTERNS = [
   /^localhost$/i,
   /^127\.\d+\.\d+\.\d+$/,
