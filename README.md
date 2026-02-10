@@ -42,7 +42,9 @@ Built-in tools:
 | `read_file`  | Read file contents                                                                   |
 | `write_file` | Write content to a file (creates dirs if needed)                                     |
 | `exec`       | Run a shell command (allowlisted: `ls`, `cat`, `grep`, `find`, `node`, `npm`, `git`) |
-| `memory`     | Read or save to long-term memory (persists across all sessions)                       |
+| `memory`     | Read or save to long-term memory (persists across all sessions)                      |
+| `web_search` | Search the web via Brave Search (requires `braveApiKey` in config)                   |
+| `web_fetch`  | Fetch a web page and extract its main text content                                   |
 
 ### Adding a new tool
 
@@ -106,6 +108,24 @@ The bot responds to private text messages from whitelisted chat IDs.
 1. Message [@userinfobot](https://t.me/userinfobot) on Telegram
 2. It replies with your user/chat ID
 3. Add that number to `allowedChatIds`
+
+</details>
+
+## Web Tools
+
+`web_search` and `web_fetch` let the agent search and read the web. `web_fetch` works out of the box. `web_search` requires a Brave Search API key.
+
+<details>
+<summary>How to get a Brave Search API key</summary>
+
+1. Go to [brave.com/search/api](https://brave.com/search/api/)
+2. Sign up for the **Free** plan (2,000 queries/month)
+3. Create an API key in the dashboard
+4. Add it to `bot.config.ts`:
+
+```ts
+braveApiKey: "BSA...",
+```
 
 </details>
 

@@ -8,6 +8,9 @@ const config: BotConfig = {
   // Telegram (optional — only needed for `npm run telegram`)
   // telegramBotToken: "123456:ABC-DEF...",
   // allowedChatIds: [123456789],
+
+  // Brave Search (optional — needed for web_search tool)
+  // braveApiKey: "BSA...",
 };
 
 export default config;

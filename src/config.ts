@@ -4,6 +4,7 @@ export type BotConfig = {
   maxTokens?: number;
   telegramBotToken?: string;
   allowedChatIds?: number[];
+  braveApiKey?: string;
 };
 
 const DEFAULTS = {
@@ -12,7 +13,7 @@ const DEFAULTS = {
 } as const;
 
 export type ResolvedConfig = Required<Pick<BotConfig, "anthropicApiKey" | "model" | "maxTokens">> &
-  Pick<BotConfig, "telegramBotToken" | "allowedChatIds">;
+  Pick<BotConfig, "telegramBotToken" | "allowedChatIds" | "braveApiKey">;
 
 export async function loadConfig(): Promise<ResolvedConfig> {
   let mod: { default: BotConfig };
@@ -40,5 +41,6 @@ export async function loadConfig(): Promise<ResolvedConfig> {
     maxTokens: raw.maxTokens ?? DEFAULTS.maxTokens,
     telegramBotToken: raw.telegramBotToken,
     allowedChatIds: raw.allowedChatIds,
+    braveApiKey: raw.braveApiKey,
   };
 }

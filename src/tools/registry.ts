@@ -4,6 +4,8 @@ import { readFileTool } from "./read_file.js";
 import { writeFileTool } from "./write_file.js";
 import { execTool } from "./exec.js";
 import { memoryTool } from "./memory.js";
+import { webSearchTool } from "./web-search.js";
+import { webFetchTool } from "./web-fetch.js";
 
 const tools = new Map<string, Tool>();
 
@@ -38,4 +40,6 @@ export function registerBuiltinTools(): void {
   register(writeFileTool);
   register(execTool);
   register(memoryTool);
+  register(webSearchTool);
+  register(webFetchTool);
 }
