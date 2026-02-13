@@ -11,7 +11,10 @@ const ALLOWED_COMMANDS = new Set([
   "find",
   "node",
   "npm",
+  "yarn",
+  "npx",
   "git",
+  "cd",
 ]);
 
 const EXEC_TIMEOUT_MS = 10_000;
