@@ -1,6 +1,7 @@
-# raked
+<img src="logo.png" width="500" alt="raked logo" />
+# Raked: A minimal AI agent built from scratch in TypeScript.
 
-A minimal AI agent built from scratch in TypeScript. A hackable implementation to understand how all the pieces of an AI agent fit together: the agent loop, sessions, memory, tools, and skills. Simple but covers the key concepts.
+A hackable implementation to understand how all the pieces of an AI agent fit together: the agent loop, sessions, memory, tools, and skills. Simple but covers the key concepts.
 
 ## Quickstart
 
