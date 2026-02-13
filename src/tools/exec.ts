@@ -11,6 +11,8 @@ const ALLOWED_COMMANDS = new Set([
   "find",
   "node",
   "npm",
+  "yarn",
+  "npx",
   "git",
 ]);
 

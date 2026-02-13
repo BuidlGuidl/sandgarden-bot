@@ -6,6 +6,7 @@ import { execTool } from "./exec.js";
 import { memoryTool } from "./memory.js";
 import { webSearchTool } from "./web-search.js";
 import { webFetchTool } from "./web-fetch.js";
+import { skillTool } from "./skill.js";
 
 const tools = new Map<string, Tool>();
 
@@ -42,4 +43,5 @@ export function registerBuiltinTools(): void {
   register(memoryTool);
   register(webSearchTool);
   register(webFetchTool);
+  register(skillTool);
 }
