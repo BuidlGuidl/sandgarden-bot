@@ -7,6 +7,8 @@ export type BotConfig = {
   braveApiKey?: string;
 };
 
+export const DATA_DIR = ".raked";
+
 const DEFAULTS = {
   model: "claude-sonnet-4-20250514",
   maxTokens: 4096,

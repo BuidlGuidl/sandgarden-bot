@@ -1,8 +1,9 @@
 import { existsSync, mkdirSync, readFileSync, appendFileSync, unlinkSync } from "fs";
 import { join } from "path";
 import type { MessageParam } from "@anthropic-ai/sdk/resources/messages.js";
+import { DATA_DIR } from "../config.js";
 
-const SESSIONS_DIR = join(process.cwd(), ".sandgarden-bot", "sessions");
+const SESSIONS_DIR = join(process.cwd(), DATA_DIR, "sessions");
 
 type SessionEntry = {
   role: "user" | "assistant";

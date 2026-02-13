@@ -1,7 +1,8 @@
 import { existsSync, mkdirSync, readFileSync, appendFileSync } from "fs";
 import { join } from "path";
+import { DATA_DIR } from "../config.js";
 
-const MEMORY_DIR = join(process.cwd(), ".sandgarden-bot", "memory");
+const MEMORY_DIR = join(process.cwd(), DATA_DIR, "memory");
 const MEMORY_FILE = join(MEMORY_DIR, "MEMORY.md");
 
 export function readMemory(): string {

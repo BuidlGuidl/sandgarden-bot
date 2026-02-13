@@ -54,7 +54,7 @@ export const webFetchTool: Tool = {
 
     const res = await fetch(raw, {
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
-      headers: { "User-Agent": "SandgardenBot/1.0" },
+      headers: { "User-Agent": "Raked/1.0" },
       redirect: "manual",
     });
 
