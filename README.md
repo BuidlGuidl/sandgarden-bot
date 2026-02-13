@@ -108,7 +108,7 @@ The whole point of this project is to give you a codebase small enough to fully 
 ## Reference
 
 <details>
-<summary>Telegram setup</summary>
+<summary><a name="telegram-setup"></a>Telegram setup</summary>
 
 Add to `bot.config.ts`:
 
