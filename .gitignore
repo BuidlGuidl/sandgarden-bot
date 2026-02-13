@@ -1,4 +1,4 @@
 node_modules/
 dist/
 bot.config.ts
-.sandgarden-bot/
+.raked/

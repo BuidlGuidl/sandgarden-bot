@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, appendFileSync, unlinkSync } from 
 import { join } from "path";
 import type { MessageParam } from "@anthropic-ai/sdk/resources/messages.js";
 
-const SESSIONS_DIR = join(process.cwd(), ".sandgarden-bot", "sessions");
+const SESSIONS_DIR = join(process.cwd(), ".raked", "sessions");
 
 type SessionEntry = {
   role: "user" | "assistant";

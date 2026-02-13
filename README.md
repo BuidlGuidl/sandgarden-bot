@@ -1,12 +1,12 @@
-# sandgarden-bot
+# raked
 
 A minimal AI agent built from scratch in TypeScript. A hackable implementation to understand how all the pieces of an AI agent fit together: the agent loop, sessions, memory, tools, and skills. Simple but covers the key concepts.
 
 ## Quickstart
 
 ```bash
-git clone https://github.com/BuidlGuidl/sandgarden-bot
-cd sandgarden-bot
+git clone https://github.com/BuidlGuidl/raked
+cd raked
 npm install
 cp bot.config.example.ts bot.config.ts
 # Edit bot.config.ts: add, at least, your Anthropic API key
@@ -58,7 +58,7 @@ Without sessions, the agent forgets what you just said, every request would be a
 Each session also keeps daily logs (`daily/YYYY-MM-DD.jsonl`) for future use like summaries or analytics.
 
 File: `src/agent/session.ts`
-Stored in: `.sandgarden-bot/sessions/<session_id>/`
+Stored in: `.raked/sessions/<session_id>/`
 
 ### Memory
 
@@ -67,7 +67,7 @@ Sessions eventually fill the context window, and you don't need the entire conve
 That file is injected into the system prompt on every request, so the agent always "remembers" the important stuff without needing the full conversation.
 
 File: `src/agent/memory.ts`
-Stored in: `.sandgarden-bot/memory/MEMORY.md`
+Stored in: `.raked/memory/MEMORY.md`
 
 ### Tools
 
@@ -166,6 +166,6 @@ Wipe all bot state (sessions, memory, daily archives):
 npm run clear
 ```
 
-Prompts for confirmation before deleting `.sandgarden-bot/`.
+Prompts for confirmation before deleting `.raked/`.
 
 </details>
