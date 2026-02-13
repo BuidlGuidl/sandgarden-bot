@@ -36,7 +36,7 @@ The fundamental cycle every AI agent runs. The LLM can request actions (tool cal
 ```
 user message
     ↓
-  build context (system prompt + history + tool definitions)
+  build context (identity + memory + available skills + session history + tool definitions)
     ↓
 ┌─→ LLM ──→ stop_reason: end? ──→ done
 │    ↓
