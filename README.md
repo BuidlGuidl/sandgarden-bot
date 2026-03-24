@@ -17,6 +17,9 @@ cp bot.config.example.ts bot.config.ts
 Run via CLI:
 
 ```bash
+# REPL mode
+npm run dev
+# or single-shot mode
 npm run dev "What files do you have in your working directory?"
 # this will send a request to the LLM and it will use the tools to get the answer
 ```
