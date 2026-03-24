@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx src/index.ts",
+    "dev": "tsx src/cli.ts",
     "telegram": "tsx src/telegram.ts",
     "clear": "tsx scripts/clear.ts"
   },
