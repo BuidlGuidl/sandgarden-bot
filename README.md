@@ -30,6 +30,21 @@ Run via Telegram (see [Telegram setup](#telegram-setup) below):
 npm run telegram
 ```
 
+## Provider logging (LLM request/response)
+
+For debugging, you can optionally log the full request payload sent to the LLM (system prompt, messages, tools, model config) and the full raw response.
+
+This is **disabled by default**. Enable it by setting `PROVIDER_LOG=1`.
+
+```bash
+PROVIDER_LOG=1 npm run dev "hello"
+```
+
+Logs are written to:
+
+- Human-readable log: `.raked/logs/provider.log`
+- Raw JSONL log (one JSON object per line): `.raked/logs/provider.jsonl`
+
 ## Architecture
 
 These are the core AI agent pieces and how they connect.

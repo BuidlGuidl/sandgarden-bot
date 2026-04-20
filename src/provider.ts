@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { MessageParam } from "@anthropic-ai/sdk/resources/messages.js";
+import { logProviderExchange } from "./provider-log.js";
 
 let client: Anthropic;
 let model: string;
@@ -19,11 +20,15 @@ export async function chat(
   tools?: Anthropic.Messages.Tool[],
   system?: string,
 ): Promise<Anthropic.Messages.Message> {
-  return client.messages.create({
+  const payload: Anthropic.Messages.MessageCreateParams = {
     model,
     max_tokens: maxTokens,
     ...(system ? { system } : {}),
     messages,
     ...(tools?.length ? { tools } : {}),
-  });
+  };
+
+  const response = await client.messages.create(payload);
+  await logProviderExchange({ request: payload, response });
+  return response;
 }
